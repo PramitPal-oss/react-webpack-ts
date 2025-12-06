@@ -1,0 +1,22 @@
+.heading {
+  font-weight: 500;
+  font-size: 20px;
+  text-align: center;
+}
+
+input {
+  padding: 3px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+input:focus {
+  border: 1px solid blue;
+}
+
+.logo {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
