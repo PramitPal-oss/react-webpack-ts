@@ -47,6 +47,10 @@ export default {
       exposes: {
         './RCButton': './src/libs/atoms/button/Button.tsx',
       },
+      shared: {
+        react: { singleton: true, eager: true, requiredVersion: false },
+        'react-dom': { singleton: true, eager: true, requiredVersion: false },
+      },
     }),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({

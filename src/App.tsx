@@ -8,7 +8,7 @@ export default function App() {
   console.log(process.env.USER_NAME, 'ENV File');
   return (
     <div>
-      <h1 className={classes.heading}>Hello from React + Webpack</h1>
+      <h1 className={classes.heading}>Hello from React + Webpack Components Library</h1>
       <input type='text' value={input} onChange={(e) => setInput(e.target.value)} />
       <img src={webLogo} alt='webPack Logo' className={classes.logo} />
       <RCButton variant='outline'>Add a new Book</RCButton>

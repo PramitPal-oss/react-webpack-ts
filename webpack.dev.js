@@ -8,7 +8,7 @@ export default merge(common, {
 
   output: {
     filename: 'bundle.js',
-    publicPath: '/',
+    publicPath: 'auto',
   },
 
   devtool: 'eval-cheap-module-source-map',
