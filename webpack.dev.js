@@ -8,14 +8,14 @@ export default merge(common, {
 
   output: {
     filename: 'bundle.js',
-    publicPath: '/',
+    publicPath: 'auto',
   },
 
   devtool: 'eval-cheap-module-source-map',
 
   devServer: {
     hot: true,
-    port: 3000,
+    port: 3002,
     open: true,
     historyApiFallback: true,
     static: './public',
