@@ -40,11 +40,11 @@ export default merge(common, {
         ],
       },
 
-      // GLOBAL CSS
+      // GLOBAL CSS AND TAILWIND
       {
         test: /\.css$/i,
         exclude: /\.module\.css$/i,
-        use: ['style-loader', 'css-loader'],
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
 
       // SCSS MODULES

@@ -25,6 +25,7 @@ export default merge(common, {
 
   module: {
     rules: [
+      // CSS MODULE
       {
         test: /\.module\.css$/i,
         use: [
@@ -41,11 +42,11 @@ export default merge(common, {
         ],
       },
 
-      // GLOBAL CSS
+      // GLOBAL CSS AND TAILWIND
       {
         test: /\.css$/i,
         exclude: /\.module\.css$/i,
-        use: ['style-loader', 'css-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
       },
 
       // SCSS MODULES
@@ -71,10 +72,6 @@ export default merge(common, {
         test: /\.s[ac]ss$/,
         exclude: /\.module\.s[ac]ss$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
-      },
-      {
-        test: /\.(css|scss)$/i,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader'],
       },
     ],
   },
