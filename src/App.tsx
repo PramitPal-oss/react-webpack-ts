@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import classes from './app.module.css';
 import webLogo from './assets/logo/webpackLogoo.png';
+import RCButton from './libs/atoms/button/Button';
 
 export default function App() {
   const [input, setInput] = useState<string>('');
@@ -10,6 +11,7 @@ export default function App() {
       <h1 className={classes.heading}>Hello from React + Webpack</h1>
       <input type='text' value={input} onChange={(e) => setInput(e.target.value)} />
       <img src={webLogo} alt='webPack Logo' className={classes.logo} />
+      <RCButton variant='outline'>Add a new Book</RCButton>
     </div>
   );
 }
