@@ -72,10 +72,6 @@ export default merge(common, {
         exclude: /\.module\.s[ac]ss$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
-      {
-        test: /\.(css|scss)$/i,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader'],
-      },
     ],
   },
 
