@@ -1,20 +1,32 @@
-// webpack.common.js
-import { CleanWebpackPlugin } from 'clean-webpack-plugin';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import webpack from 'webpack';
+// webpack.common.js (CommonJS)
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const { FederatedTypesPlugin } = require('@module-federation/typescript');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+const webpack = require('webpack');
+
 const { ModuleFederationPlugin } = webpack.container;
 
-export default {
+const federationConfig = {
+  name: 'components',
+  filename: 'remoteEntry.js',
+  exposes: {
+    './RCButton': './src/libs/atoms/button/Button.tsx',
+  },
+  shared: {
+    react: { singleton: true, eager: true, requiredVersion: false },
+    'react-dom': { singleton: true, eager: true, requiredVersion: false },
+  },
+};
+
+module.exports = {
   entry: './src/index.tsx',
 
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx'],
   },
+
   module: {
     rules: [
       {
@@ -32,6 +44,7 @@ export default {
         test: /\.(woff|woff2|ttf|eot)$/i,
         type: 'asset/resource',
       },
+
       {
         test: /\.tsx?$/,
         use: 'ts-loader',
@@ -41,18 +54,16 @@ export default {
   },
 
   plugins: [
-    new ModuleFederationPlugin({
-      name: 'components',
-      filename: 'remoteEntry.js',
-      exposes: {
-        './RCButton': './src/libs/atoms/button/Button.tsx',
-      },
-      shared: {
-        react: { singleton: true, eager: true, requiredVersion: false },
-        'react-dom': { singleton: true, eager: true, requiredVersion: false },
-      },
+    new ModuleFederationPlugin(federationConfig),
+    new FederatedTypesPlugin({
+      federationConfig,
+      disableTypeCompilation: false,
+      disableDownloadingRemoteTypes: false,
+      compiler: 'tsc', // or 'vue-tsc' if using Vue
     }),
+
     new CleanWebpackPlugin(),
+
     new HtmlWebpackPlugin({
       template: './src/index.html',
       favicon: './src/assets/favicon/webpackFavicon.png',

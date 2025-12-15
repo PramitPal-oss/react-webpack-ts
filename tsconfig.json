@@ -10,7 +10,13 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
-    "types": ["jest", "node"]
+    "types": ["jest", "node"],
+
+    "baseUrl": ".",
+    "rootDir": "./src", // required for MF plugin
+
+    "esModuleInterop": true
   },
+
   "include": ["src", "global.d.ts", "env.d.ts", "**/*.test.ts", "**/*.test.tsx"]
 }

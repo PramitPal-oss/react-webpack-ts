@@ -1,9 +1,11 @@
-// webpack.dev.js
-import Dotenv from 'dotenv-webpack';
-import { merge } from 'webpack-merge';
-import common from './webpack.common.js';
+// webpack.dev.js (CommonJS)
 
-export default merge(common, {
+const Dotenv = require('dotenv-webpack');
+const { merge } = require('webpack-merge');
+const common = require('./webpack.common.js');
+const path = require('path');
+
+module.exports = merge(common, {
   mode: 'development',
 
   output: {
@@ -18,7 +20,17 @@ export default merge(common, {
     port: 3000,
     open: true,
     historyApiFallback: true,
-    static: './public',
+    static: [
+      {
+        directory: path.resolve(__dirname, '.federation'),
+        publicPath: '/federation-types',
+      },
+      {
+        directory: path.resolve(__dirname, 'public'),
+        publicPath: '/',
+      },
+    ],
+    devMiddleware: { writeToDisk: true },
   },
 
   module: {
@@ -73,5 +85,6 @@ export default merge(common, {
       },
     ],
   },
+
   plugins: [new Dotenv()],
 });

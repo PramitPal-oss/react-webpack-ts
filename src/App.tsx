@@ -11,7 +11,9 @@ export default function App() {
       <h1 className={classes.heading}>Hello from React + Webpack Components Library</h1>
       <input type='text' value={input} onChange={(e) => setInput(e.target.value)} />
       <img src={webLogo} alt='webPack Logo' className={classes.logo} />
-      <RCButton variant='outline'>Add a new Book</RCButton>
+      <RCButton variant='filled' size={'sm'} radius='md' color='blue'>
+        Add a new Book
+      </RCButton>
     </div>
   );
 }
