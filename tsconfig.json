@@ -10,7 +10,12 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
-    "types": ["jest", "node"]
+    "types": ["jest", "node"],
+    "typeRoots": ["./node_modules/@types", "./@types"],
+    "baseUrl": ".",
+    "paths": {
+      "*": ["@mf-types/*"]
+    }
   },
-  "include": ["src", "global.d.ts", "env.d.ts", "**/*.test.ts", "**/*.test.tsx", "src/@types"]
+  "include": ["src", "global.d.ts", "env.d.ts", "**/*.test.ts", "**/*.test.tsx", "@mf-types"]
 }

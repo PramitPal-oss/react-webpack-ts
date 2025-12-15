@@ -2,8 +2,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import classes from './app.module.css';
 import webLogo from './assets/logo/webpackLogoo.png';
-
-const Button = React.lazy(() => import('components/RCButton'));
+const RCButton = React.lazy(() => import('components/RCButton'));
 
 export default function App() {
   const [input, setInput] = useState<string>('');
@@ -14,7 +13,9 @@ export default function App() {
       <input type='text' value={input} onChange={(e) => setInput(e.target.value)} />
       <img src={webLogo} alt='webPack Logo' className={classes.logo} />
       <React.Suspense fallback={<div>Loading...</div>}>
-        <Button variant='outline'>Add a button</Button>
+        <RCButton variant='light' size={'sm'} radius='md' color='blue'>
+          Add a button
+        </RCButton>
       </React.Suspense>
     </div>
   );

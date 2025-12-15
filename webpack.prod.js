@@ -1,18 +1,15 @@
-// webpack.prod.js
-import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
-import Dotenv from 'dotenv-webpack';
-import ImageMinimizerPlugin from 'image-minimizer-webpack-plugin';
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import path from 'path';
-import TerserPlugin from 'terser-webpack-plugin';
-import { fileURLToPath } from 'url';
-import { merge } from 'webpack-merge';
-import common from './webpack.common.js';
+// webpack.prod.js (CommonJS)
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
+const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const path = require('path');
+const TerserPlugin = require('terser-webpack-plugin');
+const { merge } = require('webpack-merge');
+const common = require('./webpack.common.js');
 
-export default merge(common, {
+module.exports = merge(common, {
   mode: 'production',
 
   output: {
@@ -20,12 +17,12 @@ export default merge(common, {
     filename: 'js/[name].[contenthash].js',
     chunkFilename: 'js/[name].[contenthash].chunk.js',
     assetModuleFilename: 'assets/[hash][ext][query]',
-    publicPath: '/',
+    publicPath: 'auto',
   },
 
   module: {
     rules: [
-      // CSS MODULE
+      // CSS MODULES
       {
         test: /\.module\.css$/i,
         use: [
@@ -42,11 +39,11 @@ export default merge(common, {
         ],
       },
 
-      // GLOBAL CSS AND TAILWIND
+      // GLOBAL CSS
       {
         test: /\.css$/i,
         exclude: /\.module\.css$/i,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
+        use: ['style-loader', 'css-loader'],
       },
 
       // SCSS MODULES

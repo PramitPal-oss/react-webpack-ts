@@ -1,9 +1,10 @@
-// webpack.dev.js
-import Dotenv from 'dotenv-webpack';
-import { merge } from 'webpack-merge';
-import common from './webpack.common.js';
+// webpack.dev.js (CommonJS)
 
-export default merge(common, {
+const Dotenv = require('dotenv-webpack');
+const { merge } = require('webpack-merge');
+const common = require('./webpack.common.js');
+
+module.exports = merge(common, {
   mode: 'development',
 
   output: {
@@ -15,7 +16,7 @@ export default merge(common, {
 
   devServer: {
     hot: true,
-    port: 3002,
+    port: 3001,
     open: true,
     historyApiFallback: true,
     static: './public',
@@ -40,11 +41,11 @@ export default merge(common, {
         ],
       },
 
-      // GLOBAL CSS AND TAILWIND
+      // GLOBAL CSS
       {
         test: /\.css$/i,
         exclude: /\.module\.css$/i,
-        use: ['style-loader', 'css-loader', 'postcss-loader'],
+        use: ['style-loader', 'css-loader'],
       },
 
       // SCSS MODULES
@@ -73,5 +74,6 @@ export default merge(common, {
       },
     ],
   },
+
   plugins: [new Dotenv()],
 });

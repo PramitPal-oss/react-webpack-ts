@@ -1,20 +1,31 @@
-// webpack.common.js
-import { CleanWebpackPlugin } from 'clean-webpack-plugin';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import webpack from 'webpack';
+// webpack.common.js (CommonJS)
+const { FederatedTypesPlugin } = require('@module-federation/typescript');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+const webpack = require('webpack');
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 const { ModuleFederationPlugin } = webpack.container;
 
-export default {
+const federationConfig = {
+  name: 'remote_app',
+  filename: 'remoteEntry.js',
+  remotes: {
+    components: 'components@http://localhost:3000/remoteEntry.js',
+  },
+  shared: {
+    react: { singleton: true, eager: true, requiredVersion: false },
+    'react-dom': { singleton: true, eager: true, requiredVersion: false },
+  },
+};
+
+module.exports = {
   entry: './src/index.tsx',
 
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx'],
   },
+
   module: {
     rules: [
       {
@@ -35,30 +46,23 @@ export default {
 
       {
         test: /\.tsx?$/,
-        use: {
-          loader: 'ts-loader',
-          options: {
-            transpileOnly: true,
-          },
-        },
+        use: 'ts-loader',
         exclude: /node_modules/,
       },
     ],
   },
 
   plugins: [
-    new ModuleFederationPlugin({
-      name: 'remote_app',
-      filename: 'remoteEntry.js',
-      remotes: {
-        components: 'components@http://localhost:3000/remoteEntry.js',
-      },
-      shared: {
-        react: { singleton: true, eager: true, requiredVersion: false },
-        'react-dom': { singleton: true, eager: true, requiredVersion: false },
-      },
+    new ModuleFederationPlugin(federationConfig),
+    new FederatedTypesPlugin({
+      federationConfig,
+      disableTypeCompilation: false,
+      disableDownloadingRemoteTypes: false,
+      compiler: 'tsc',
     }),
+
     new CleanWebpackPlugin(),
+
     new HtmlWebpackPlugin({
       template: './src/index.html',
     }),
