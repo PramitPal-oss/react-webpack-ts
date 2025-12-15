@@ -13,7 +13,7 @@ export default function App() {
       <input type='text' value={input} onChange={(e) => setInput(e.target.value)} />
       <img src={webLogo} alt='webPack Logo' className={classes.logo} />
       <React.Suspense fallback={<div>Loading...</div>}>
-        <RCButton variant='light' size={'sm'} radius='md' color='blue'>
+        <RCButton variant='light' size={'sm'} radius='md' color='blue' onClick={() => console.log('Hello Brother')}>
           Add a button
         </RCButton>
       </React.Suspense>
