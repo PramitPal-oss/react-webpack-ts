@@ -12,11 +12,11 @@ const federationConfig = {
   name: 'components',
   filename: 'remoteEntry.js',
   exposes: {
-    './RCButton': './src/libs/atoms/button/Button.tsx',
+    './ui': './src/ui.ts',
   },
   shared: {
-    react: { singleton: true, eager: true, requiredVersion: false },
-    'react-dom': { singleton: true, eager: true, requiredVersion: false },
+    react: { singleton: true, eager: false, requiredVersion: false },
+    'react-dom': { singleton: true, eager: false, requiredVersion: false },
   },
 };
 
