@@ -16,6 +16,8 @@ const federationConfig = {
   shared: {
     react: { singleton: true, eager: true, requiredVersion: false },
     'react-dom': { singleton: true, eager: true, requiredVersion: false },
+    '@mantine/core': { singleton: true },
+    '@emotion/react': { singleton: true },
   },
 };
 
