@@ -1,16 +1,17 @@
-import { RCButton, RCTextInput } from 'components/ui';
+// import { RCButton, RCTextInput } from 'components/ui';
 
-import * as React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import classes from './app.module.css';
 import webLogo from './assets/logo/webpackLogoo.png';
-console.log('UI module', require('components/ui'));
+// console.log('UI module', require('components/ui'));
+const RCButton = React.lazy(() => import('components/ui').then((m) => ({ default: m.RCButton })));
+const RCTextInput = React.lazy(() => import('components/ui').then((m) => ({ default: m.RCTextInput })));
 
 export default function App() {
   const [input, setInput] = useState<string>('');
   return (
     <div>
-      <h1 className={classes.heading}>Hello from React + Webpackss</h1>
+      <h1 className={classes.heading}>Hello from React + Webpack</h1>
       <h2 className='text-2xl text-amber-400 font-poppins'>I am Pramit Pal</h2>
       <input type='text' value={input} onChange={(e) => setInput(e.target.value)} />
       <img src={webLogo} alt='webPack Logo' className={classes.logo} />

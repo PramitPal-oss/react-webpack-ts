@@ -1,8 +1,7 @@
-// src/bootstrap.tsx (REMOTE) - Dual Booting System
-// Automatically uses host provider if available, otherwise runs standalone
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
+import { MFEErrorBoundary } from './core/MFEErrorBoundary';
 import './index.css';
 import { ConditionalProvider, loadProvider } from './utils/providerLoader';
 
@@ -26,9 +25,11 @@ async function init() {
 
 function render() {
   root.render(
-    <ConditionalProvider Provider={Provider}>
-      <App />
-    </ConditionalProvider>
+    <MFEErrorBoundary>
+      <ConditionalProvider Provider={Provider}>
+        <App />
+      </ConditionalProvider>
+    </MFEErrorBoundary>
   );
 }
 
