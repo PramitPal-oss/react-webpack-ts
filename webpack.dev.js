@@ -9,7 +9,7 @@ module.exports = merge(common, {
 
   output: {
     filename: 'bundle.js',
-    publicPath: 'auto',
+    publicPath: 'http://localhost:3001/',
   },
 
   devtool: 'eval-cheap-module-source-map',
@@ -20,10 +20,16 @@ module.exports = merge(common, {
     open: true,
     historyApiFallback: true,
     static: './public',
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+      'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization',
+    },
     client: {
-      overlay: false,
-      // ✅ reconnect should be inside client, not devServer root
-      reconnect: 3,
+      overlay: {
+        errors: true,
+        warnings: false,
+      },
     },
   },
 
@@ -81,4 +87,9 @@ module.exports = merge(common, {
   },
 
   plugins: [new Dotenv()],
+
+  optimization: {
+    moduleIds: 'named',
+    chunkIds: 'named',
+  },
 });
