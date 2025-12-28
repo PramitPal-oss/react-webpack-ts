@@ -35,3 +35,20 @@ declare module '*.svg' {
   const value: string;
   export default value;
 }
+
+// Webpack Hot Module Replacement types
+interface HotModule {
+  hot?: {
+    accept(dependencies: string | string[], callback?: (updatedDependencies: string[]) => void): void;
+    accept(callback?: (updatedDependencies: string[]) => void): void;
+    decline(dependencies?: string | string[]): void;
+    dispose(callback: (data: any) => void): void;
+    addDisposeHandler(callback: (data: any) => void): void;
+    removeDisposeHandler(callback: (data: any) => void): void;
+    status(): 'idle' | 'check' | 'prepare' | 'ready' | 'dispose' | 'apply' | 'abort' | 'fail';
+    active: boolean;
+    data: any;
+  };
+}
+
+declare var module: HotModule;
