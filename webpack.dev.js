@@ -20,6 +20,11 @@ module.exports = merge(common, {
     open: true,
     historyApiFallback: true,
     static: './public',
+    client: {
+      overlay: false,
+      // ✅ reconnect should be inside client, not devServer root
+      reconnect: 3,
+    },
   },
 
   module: {

@@ -1,7 +1,4 @@
-import { createRoot } from 'react-dom/client';
-import App from './App';
-import './index.css';
-
-const rootElement = document.getElementById('root')!;
-const root = createRoot(rootElement);
-root.render(<App />);
+// src/index.tsx or main.tsx (REMOTE)
+import('./bootstrap').catch((err) => {
+  console.error('Failed to load application:', err);
+});

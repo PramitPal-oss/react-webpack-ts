@@ -1,8 +1,10 @@
+import { RCButton, RCTextInput } from 'components/ui';
+
 import * as React from 'react';
 import { useState } from 'react';
 import classes from './app.module.css';
 import webLogo from './assets/logo/webpackLogoo.png';
-const RCButton = React.lazy(() => import('components/RCButton'));
+console.log('UI module', require('components/ui'));
 
 export default function App() {
   const [input, setInput] = useState<string>('');
@@ -13,9 +15,12 @@ export default function App() {
       <input type='text' value={input} onChange={(e) => setInput(e.target.value)} />
       <img src={webLogo} alt='webPack Logo' className={classes.logo} />
       <React.Suspense fallback={<div>Loading...</div>}>
-        <RCButton variant='light' size={'sm'} radius='md' color='blue' onClick={() => console.log('Hello Brother')}>
+        <RCButton variant='outline' size={'sm'} radius='md' color='blue' onClick={() => console.log('Hello Brother')}>
           Add a button
         </RCButton>
+      </React.Suspense>
+      <React.Suspense fallback={<div>Loading...</div>}>
+        <RCTextInput label='Hello Dev' description='Why it is here' radius='md' />
       </React.Suspense>
     </div>
   );

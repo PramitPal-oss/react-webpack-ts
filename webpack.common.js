@@ -14,8 +14,8 @@ const federationConfig = {
     components: 'components@http://localhost:3000/remoteEntry.js',
   },
   shared: {
-    react: { singleton: true, eager: true, requiredVersion: false },
-    'react-dom': { singleton: true, eager: true, requiredVersion: false },
+    react: { singleton: true, eager: false, requiredVersion: false },
+    'react-dom': { singleton: true, eager: false, requiredVersion: false },
   },
 };
 

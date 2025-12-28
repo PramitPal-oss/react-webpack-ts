@@ -10,12 +10,13 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
-    "types": ["jest", "node"],
-    "typeRoots": ["./node_modules/@types", "./@types"],
+    "types": ["jest", "node", "webpack-env"],
     "baseUrl": ".",
     "paths": {
-      "*": ["@mf-types/*"]
-    }
+      "components/ui": ["@mf-types/components/ui"],
+      "components/*": ["@mf-types/components/*"]
+    },
+    "typeRoots": ["./node_modules/@types", "./@types", "./@mf-types"]
   },
   "include": ["src", "global.d.ts", "env.d.ts", "**/*.test.ts", "**/*.test.tsx", "@mf-types"]
 }
