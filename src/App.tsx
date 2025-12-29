@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 import classes from './app.module.css';
 import webLogo from './assets/logo/webpackLogoo.png';
 import RCButton from './libs/atoms/button/Button';
@@ -11,7 +12,13 @@ export default function App() {
       <h1 className={classes.heading}>Hello from React + Webpack Components Library</h1>
       <input type='text' value={input} onChange={(e) => setInput(e.target.value)} />
       <img src={webLogo} alt='webPack Logo' className={classes.logo} />
-      <RCButton variant='filled' size={'sm'} radius='md' color='blue'>
+      <RCButton
+        variant='filled'
+        size={'sm'}
+        radius='md'
+        color='blue'
+        onClick={() => toast.success('Successfully clicked!!')}
+      >
         Add a new Book
       </RCButton>
     </div>

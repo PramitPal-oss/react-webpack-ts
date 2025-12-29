@@ -17,6 +17,10 @@ const federationConfig = {
   shared: {
     react: { singleton: true, eager: false, requiredVersion: false },
     'react-dom': { singleton: true, eager: false, requiredVersion: false },
+    'react-hot-toast': {
+      singleton: true,
+      requiredVersion: false,
+    },
   },
 };
 

@@ -1,7 +1,7 @@
 import { createRoot } from 'react-dom/client';
-import { RCProvider } from './RCProvider';
 import App from './App';
 import './index.css';
+import { RCProvider } from './RCProvider';
 
 const rootElement = document.getElementById('root')!;
 const root = createRoot(rootElement);
