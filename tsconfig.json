@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+
+    "types": ["node", "webpack-env", "jest"],
+
+    "baseUrl": ".",
+    "paths": {
+      "components/ui": ["@mf-types/components/ui"],
+      "components/*": ["@mf-types/components/*"],
+      "@/*": ["src/*"],
+      "@shared/*": ["src/shared/*"]
+    },
+
+    "esModuleInterop": true
+  },
+  "include": ["src", "global.d.ts", "env.d.ts", "**/*.test.ts", "**/*.test.tsx", "@mf-types/**/*.d.ts"]
+}
